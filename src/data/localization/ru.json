@@ -140,19 +140,19 @@
         ],
         "screenshots": [
           {
-            "src": "./src/data/images/goal-seek-news-screenshot.png",
+            "src": "/images/goal-seek-news-screenshot.png",
             "alt": "Новость о новом функционале \"Подбор параметров\""
           },
           {
-            "src": "./src/data/images/solver-news-screenshot.png",
+            "src": "/images/solver-news-screenshot.png",
             "alt": "Новость о новом функционале \"Поиск решений\""
           },
           {
-            "src": "./src/data/images/series-news-screenshot.png",
+            "src": "/images/series-news-screenshot.png",
             "alt": "Новость о новом функционале \"Прогрессия\""
           },
           {
-            "src": "./src/data/images/iterative-calc-news-screenshot.png",
+            "src": "/images/iterative-calc-news-screenshot.png",
             "alt": "Новость о новом функционале \"Итеративные вычисления\""
           }
         ],
@@ -212,15 +212,15 @@
         ],
         "screenshots": [
           {
-            "src": "./src/data/images/input_csv_screenshot.png",
+            "src": "/images/input_csv_screenshot.png",
             "alt": "Входной CSV файл"
           },
           {
-            "src": "./src/data/images/result_cli_screenshot.png",
+            "src": "/images/result_cli_screenshot.png",
             "alt": "Логи утилиты при ее работе"
           },
           {
-            "src": "./src/data/images/output_js_screenshot.png",
+            "src": "/images/output_js_screenshot.png",
             "alt": "Результат работы утилиты"
           }
         ]
@@ -244,7 +244,7 @@
         ],
         "screenshots": [
           {
-            "src": "./src/data/images/game-screenshot.png",
+            "src": "/images/game-screenshot.png",
             "alt": "Скриншот игры"
           }
         ],

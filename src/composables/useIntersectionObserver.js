@@ -2,7 +2,7 @@ import {ref} from 'vue';
 
 const useIntersectionObserver = (options) => {
 	let visibleElementId = ref('');
-	const observer = new IntersectionObserver((entries, observer) => {
+	const observer = new IntersectionObserver((entries) => {
 		entries.forEach(entry => {
 			if (entry.isIntersecting) {
 				visibleElementId.value = entry.target.id;
