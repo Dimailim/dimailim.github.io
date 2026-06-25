@@ -1,0 +1,113 @@
+:root {
+  /* Colors for light theme */
+  --bg-color: #f6f8fa;
+  --header-bg: rgba(255, 255, 255, 0.8);
+  --text-primary: #1a202c;
+  --text-secondary: #4a5568;
+  --accent: #2da44e;
+  --card-bg: #ffffff;
+  --border-color: #d0d7de;
+  --link-color: #2da44e;
+  --btn-bg: #2da44e;
+  --btn-text: #ffffff;
+  --shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+
+  /* Colors for both themes */
+  --btn-accent-text: #ffffff;
+
+  /* Animation */
+  --transition-fast: 0.2s ease;
+  --transition-default: 0.3s ease;
+  --transition-slow: 0.5s ease;
+
+  --button-radius: 6px;
+  --block-radius: 8px;
+  --tag-radius: 20px;
+
+  --z-index-tooltip: 1;
+  --z-index-header: 2;
+  --z-index-modal: 3;
+
+  --breakpoint-sm: 480px;
+  --breakpoint-md: 768px;
+}
+
+[data-theme='dark'] {
+  --bg-color: #0d1117;
+  --header-bg: rgba(22, 27, 34, 0.8);
+  --text-primary: #c9d1d9;
+  --text-secondary: #8b949e;
+  --accent: #58a6ff;
+  --card-bg: #161b22;
+  --border-color: #30363d;
+  --link-color: #58a6ff;
+  --btn-bg: #21262d;
+  --btn-text: #c9d1d9;
+  --shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.5);
+}
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: "Segoe UI", Helvetica, Arial, sans-serif;
+  background-color: var(--bg-color);
+  color: var(--text-primary);
+  line-height: 1.6;
+  transition: background-color var(--transition-default), color var(--transition-default);
+  min-height: 100vh;
+}
+
+a {
+  color: var(--link-color);
+  text-decoration: none;
+  transition: color var(--transition-fast);
+}
+
+a:hover {
+  text-decoration: underline;
+}
+
+.container {
+  max-width: 900px;
+  margin: 0 auto;
+  padding: 0 1.5rem;
+}
+
+section {
+  padding: 4rem 0;
+}
+
+h2 {
+  font-size: 2rem;
+  margin-bottom: 2rem;
+  border-bottom: 2px solid var(--accent);
+  display: inline-block;
+  scroll-margin-top: 100px;
+}
+
+h3 {
+  font-size: 1.5rem;
+}
+
+h4 {
+  font-size: 1.25rem;
+  margin-bottom: 0.75rem;
+  color: var(--text-primary);
+}
+
+.list-marked__item {
+  position: relative;
+  padding-left: 1.5rem;
+  margin-bottom: 0.75rem;
+}
+
+.list-marked__item::before {
+  content: "▹";
+  position: absolute;
+  left: 0;
+  color: var(--accent);
+}

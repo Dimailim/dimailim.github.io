@@ -1,0 +1,273 @@
+{
+  "Common_data": {
+    "Common_links": {
+      "tg_title": "Telegram",
+      "tg": "https://t.me/Dimailim",
+      "github_title": "GitHub",
+      "github": "https://github.com/Dimailim",
+      "linkedin_title": "LinkedIn",
+      "linkedin": "https://www.linkedin.com/in/dmitry-gvozdev/",
+      "email_title": "Email",
+      "email": "dgvozdev.dev{'@'}gmail.com"
+    },
+    "Common_name": "Dmitry Gvozdev",
+    "Common_title_about": "About me",
+    "Common_title_skills": "Key skills",
+    "Common_title_experience": "Experience",
+    "Common_title_achievements": "Achievements & Projects",
+    "Common_button_toggleTheme": "Toggle theme",
+    "Common_button_switchToEn": "Switch to English",
+    "Common_button_switchToRu": "Сменить язык на русский",
+    "Common_button_scrollToTop": "Scroll to top",
+    "Footer_title_contact": "Contacts",
+    "BusinessCard_position": "Software Engineer",
+    "BusinessCard_direction": "Frontend development"
+  },
+  "About_data": {
+    "main_text": [
+      "Software Engineer with 7 years in frontend development. I focus on the hard parts of a product - complex logic, heavy computation, and systems you can't afford to break while you change them.",
+      "I learn an unfamiliar codebase fast and understand how it works, instead of just using it.",
+      "Over these years I've worked across a range of products, from a low-code platform to a large-scale spreadsheet editor used by millions.",
+      "At ONLYOFFICE I created Goal Seek, Solver (linear optimization with the Simplex algorithm), and the Series module from scratch. I also made iterative calculation in the core engine work correctly, without breaking the existing calculation."
+    ],
+    "experience_title": "My experience includes:",
+    "experience_incl_list": [
+      "Developing complex features focused on algorithmic and mathematical challenges",
+      "Designing features from the ground up",
+      "Optimizing application performance for large datasets",
+      "Writing unit tests for new functionality",
+      "Using algorithms and design patterns in real applications"
+
+    ],
+    "activities_title": "Additional activities:",
+    "extra_activities_list": [
+      {
+        "text": "Contributed at the open-source project",
+        "link": "https://github.com/ONLYOFFICE/sdkjs/commits/master/?author=Dimailim",
+        "nameLink": "ONLYOFFICE"
+      },
+      {
+        "text": "Building a virtual tabletop platform for tabletop RPGs (Vue 3, PixiJS). Currently in early design."
+      }
+    ],
+    "eng_skill": "English: B1-B2 level,  enough for work communication.",
+    "availablity": "Open to full‑time positions, either remote or with relocation."
+  },
+  "Skills_data": {
+    "skills_list": [
+      {
+        "name": "JavaScript",
+        "color": "#f7df1e",
+        "description": "Deep understanding of the language - my primary one.\nStrong with complex, performance-conscious client-side logic.\nUsed JavaScript to build the ONLYOFFICE Spreadsheet Editor and low-code platform tools.\n7 years of commercial experience."
+      },
+      {
+        "name": "Vue.js",
+        "color": "#42b883",
+        "description": "Active learning, basic level.\nUsed in personal projects - this site is one of my learning projects in Vue."
+      },
+      {
+        "name": "NodeJS",
+        "color": "#339933",
+        "description": "Basic knowledge, learned by myself in pet projects.\nBuilt a small CLI utility that converts CSV into JS unit tests as an automation tool."
+      },
+      {
+        "name": "HTML/CSS",
+        "color": "#e34f26",
+        "description": "Basic knowledge - semantic markup, responsiveness."
+      },
+      {
+        "name": "TypeScript",
+        "color": "#3178c6",
+        "description": "Actively learning and applying it in new projects."
+      }
+    ],
+    "extra_text": "I am open to self-learning any new stack."
+  },
+  "Experience_data": [
+    {
+      "id": "asc",
+      "period": "May 2023 – April 2026",
+      "company": "LLC \"Ascensio system\"",
+      "role": "Software engineer",
+      "details": [
+        "Worked on the ONLYOFFICE Spreadsheet Editor (SaaS & Desktop, sdkjs part) - millions of users.",
+        "Designed and built complex spreadsheet features from scratch, including Goal Seek, Solver, and Series. About 6 new features were released.",
+        "Developed a linear optimization engine based on the Simplex method for the Solver feature.",
+        "Made iterative calculation in the core spreadsheet logic work correctly: implemented cascading recalculation and detection of cyclic cells.",
+        "Improved performance for large datasets and optimized recursion in the calculation engine. Reduced full data load time from 30 to 5 seconds for files over 1 MB with 10,000+ elements.",
+        "Investigated and resolved complex, deep-rooted bugs that required reverse engineering and system-level analysis - fixed 80+ bugs.",
+        "Contributed to and extended existing features such as Autofill, improving usability and performance.",
+        "Worked in pure JavaScript (ES5) with IE11 compatibility.",
+        "Worked on features through the full development cycle: from research and system design to implementation and optimization. Built and released 3 features fully from scratch.",
+        "Wrote unit tests covering new functionality.",
+        "Prepared documentation for the QA team, highlighting key areas to focus on during testing.",
+        "Proposed improvements to product functionality and UI."
+      ]
+    },
+    {
+      "id": "sc",
+      "period": "June 2019 – May 2023",
+      "company": "LLC \"Smart Consulting\"",
+      "role": "Digit developer",
+      "details": [
+        "JavaScript developer on the «Digit» low‑code platform",
+        "Grew from a Junior to a Middle developer while building production features.",
+        "Built a JSON data mapping solution with a configurable UI that improved data import accuracy.",
+        "Worked directly with clients: provided consultations and onboarding on platform functionality.",
+        "Contributed to improving team processes, including code review practices.",
+        "Mentored a junior colleague and supported interns with code reviews and feedback."
+      ]
+    }
+  ],
+  "Achievements_data": {
+    "Achievements_list": [
+      {
+        "id": "onlyoffice-editor",
+        "title": "ONLYOFFICE Spreadsheet Editor",
+        "tags": [
+          "JavaScript",
+          "OOP",
+          "Algorithms",
+          "Reverse Engineering",
+          "Optimization"
+        ],
+        "desc": "Built complex calculation features from scratch - Solver, Goal Seek, iterative calculation - in a spreadsheet editor used by millions.",
+        "fullDesc": [
+          "Designed and built several Excel-level features from scratch for a spreadsheet editor used by millions. Most of them were included in the product's release news and closed long-time user requests.",
+          "Solver: reverse-engineered Excel's Solver, studied the math behind it, and built a linear optimization engine based on the Simplex method from scratch (using reference implementations as a base). Then I integrated it into the editor. The hardest parts were the analysis, the reverse engineering, and the integration. Validation of the model input gave more test bugs than the calculation algorithm itself.",
+          "Iterative calculation: implemented cascading recalculation of cyclic cells, controlled by two parameters - max iterations and the minimum difference between results (absolute error). The hardest part was detecting recursive cells when iterative mode is turned off. This was a difficult edge case with many user reports, and I fixed most of them.",
+          "Goal Seek: my first feature built from scratch. I reverse-engineered how it works in Excel, chose the right numerical method, and implemented it.",
+          "All of this was written on pure ES5 with IE11 support: polyfills where possible, OOP based on prototypes, plain objects instead of Map/Set, etc.",
+          "Also developed Series (progressions, including date fills by week/month/year) and extended the Autofill module (date and time handling)."
+        ],
+        "screenshots": [
+          {
+            "src": "/images/goal-seek-news-screenshot.png",
+            "alt": "News about Goal Seek feature"
+          },
+          {
+            "src": "/images/solver-news-screenshot.png",
+            "alt": "News about Solver feature"
+          },
+          {
+            "src": "/images/series-news-screenshot.png",
+            "alt": "News about Series feature"
+          },
+          {
+            "src": "/images/iterative-calc-news-screenshot.png",
+            "alt": "News about Iterative calculation feature"
+          }
+        ],
+        "commit_title": "You can see code examples in commits of this project:",
+        "commit_links": [
+          {
+            "url": "https://github.com/ONLYOFFICE/sdkjs/commit/72768ff2a8aa41db266251ca2fa131cd79c0739f",
+            "alt": "Commit with Goal Seek feature"
+          },
+          {
+            "url": "https://github.com/ONLYOFFICE/sdkjs/commit/1f57d8bf8db92c8c62084d35f210e68be2c9e0fc",
+            "alt": "Commit with Solver feature"
+          },
+          {
+            "url": "https://github.com/ONLYOFFICE/sdkjs/commit/d8f99df5f4a3115bac233ba5c4a32c97aa5a9477",
+            "alt": "Commit with Series feature"
+          },
+          {
+            "url": "https://github.com/ONLYOFFICE/sdkjs/commit/0ccbceb45ee3f4c092101d34f55e786e11c916f8#diff-98ac11944096ba2aa401fdbfa416c0a19035b5c2d50751aea4f7dc5b91fd5d4d",
+            "alt": "Commit with Iterative calculation feature"
+          }
+        ]
+      },
+      {
+        "id": "mapping",
+        "title": "Data mapping from external integrations",
+        "tags": [
+          "JavaScript",
+          "Functional Programming",
+          "JSON"
+        ],
+        "desc": "A mapping layer that puts messy external data into the correct fields of a low-code platform. It reduced import errors and support load.",
+        "fullDesc": [
+          "Built a data-mapping layer for a low-code platform to fix how data from external integrations was imported.",
+          "The problem: incoming data often had fields in unpredictable places, so the platform's standard mapping put them into wrong database attributes, or lost them completely when it could not find a match.",
+          "The solution: a configurable mapping where users choose which external field goes into which platform attribute. It also handles non-standard structures that the default mapping couldn't - and these were most of the real cases.",
+          "Result: external data started landing in the right place reliably. This significantly reduced support tickets and data problems for end users."
+        ]
+      },
+      {
+        "id": "cli",
+        "title": "Converter from CSV to JS unit tests",
+        "tags": [
+          "JavaScript",
+          "NodeJS",
+          "OOP",
+          "CLI",
+          "Automation"
+        ],
+        "desc": "A CLI tool that converts CSV reference data into ready QUnit tests - automating coverage of 500+ spreadsheet formulas.",
+        "fullDesc": [
+          "A Node.js CLI utility I built to automate writing unit tests for spreadsheet formulas.",
+          "The task: fully cover 500+ implemented formulas with tests - positive, negative, and edge cases. An Excel reference table was used as the standard, and ONLYOFFICE output was compared with it. I used AI to speed up creating the test cases.",
+          "The utility parses that reference data from CSV and generates ready QUnit tests. This removes the manual test writing completely.",
+          "As part of this workflow, a two-person team covered all implemented formulas in about two months. The speed grew from about 1-2 to 5+ formulas per day. The generated tests went into the real test suite and into a release.",
+          "Written in JavaScript with an OOP structure."
+        ],
+        "screenshots": [
+          {
+            "src": "/images/input_csv_screenshot.png",
+            "alt": "Input CSV file"
+          },
+          {
+            "src": "/images/result_cli_screenshot.png",
+            "alt": "Result of work CLI utility"
+          },
+          {
+            "src": "/images/output_js_screenshot.png",
+            "alt": "Output JS unit test file"
+          }
+        ]
+      },
+      {
+        "id": "game-cocos-engine",
+        "title": "Blast puzzle game",
+        "tags": [
+          "TypeScript",
+          "Cocos Engine",
+          "OOP"
+        ],
+        "desc": "A Blast-style puzzle game built from scratch in Cocos.  I made it to learn the engine, TypeScript, and OOP in practice",
+        "fullDesc": [
+          "A Blast-style puzzle game I built to learn the Cocos engine (Cocos Creator 2.4.15) from scratch, along with TypeScript and OOP in practice.",
+          "Implemented the core blast mechanic, progression, boosters, and win/lose conditions - a working, playable demo.",
+          "The interesting parts were the tile-group search algorithm and the game-state animations, while learning a new engine from scratch.",
+          "Structured with OOP - separate classes for the tile, the game board, the HUD, and so on.",
+          "Built solo, with a playable build, source code, and screenshots available.",
+          "Still in progress - I plan to finish it as a complete mini-game."
+        ],
+        "screenshots": [
+          {
+            "src": "/images/game-screenshot.png",
+            "alt": "Screenshot of the game"
+          }
+        ],
+        "commit_title": "You can see repository with source code of this project:",
+        "commit_links": [
+          {
+            "url": "https://github.com/Dimailim/Blast_Puzzle",
+            "alt": "Repository with source code of the game"
+          },
+          {
+            "url": "https://dimailim.github.io/Blast_Puzzle/",
+            "alt": "Demo game"
+          }
+        ]
+      }
+    ],
+    "details_title": "Details",
+    "modal_close": "Close",
+    "carousel_prev": "Previous element",
+    "carousel_next": "Next element",
+    "show_screenshots": "Show screenshots",
+    "hide_screenshots": "Hide screenshots"
+  }
+}

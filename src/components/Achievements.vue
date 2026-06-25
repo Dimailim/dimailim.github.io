@@ -1,0 +1,110 @@
+<script setup>
+import {ref} from 'vue';
+import {useI18n} from 'vue-i18n';
+
+import Carousel from './Carousel.vue';
+import AchievementModal from './AchievementModal.vue';
+
+const {t, tm} = useI18n();
+
+const selectedItem = ref(null);
+const showScreenshots = ref(false);
+
+const openModal = (item) => {
+  selectedItem.value = item;
+  showScreenshots.value = false;
+  document.body.style.overflow = 'hidden';
+};
+
+const closeModal = () => {
+  selectedItem.value = null;
+  document.body.style.overflow = 'auto';
+};
+
+const toggleScreenshots = () => {
+  showScreenshots.value = !showScreenshots.value;
+};
+</script>
+
+<template>
+  <section id="achievements">
+    <h2>{{ t('Common_data.Common_title_achievements') }}</h2>
+
+    <div class="achievements__content">
+      <Carousel 
+        :items="tm('Achievements_data.Achievements_list')"
+        :perPage="2"
+        :prevLabel="t('Achievements_data.carousel_prev')"
+        :nextLabel="t('Achievements_data.carousel_next')"
+      >
+        <template #default="{ item }">
+          <div 
+            class="achievement-card"
+            @click="openModal(item)"
+            role="button"
+          >
+            <div class="achievement-card__tags">
+              <span v-for="tag in item.tags" :key="tag" class="achievement-card__tag">
+                {{ tag }}
+              </span>
+            </div>
+            <h4>{{ item.title }}</h4>
+            <p class="achievement-card__desc">{{ item.desc }}</p>
+          </div>
+        </template>
+      </Carousel>
+    </div>
+
+    <!-- Modal -->
+    <AchievementModal
+      :selectedItem="selectedItem"
+      :showScreenshots="showScreenshots"
+      @closeModal="closeModal"
+      @toggleScreenshots="toggleScreenshots"
+      />
+  </section>
+</template>
+
+<style scoped>
+.achievements__content {
+  margin: 0 -10px;
+}
+
+.achievement-card {
+  height: 100%;
+  background: var(--card-bg);
+  border: 1px solid var(--border-color);
+  border-radius: var(--block-radius);
+  padding: 1.75rem;
+  cursor: pointer;
+  transition:  transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  display: flex;
+  flex-direction: column;
+  position: relative;
+  overflow: hidden;
+  user-select: none;
+}
+
+.achievement-card:hover {
+  transform: translateY(-5px);
+  border-color: var(--accent);
+  box-shadow: var(--shadow);
+}
+
+.achievement-card__tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  margin-bottom: 1rem;
+}
+
+.achievement-card__tag {
+  font-size: 0.75rem;
+  padding: 0.25rem 0.6rem;
+  background: var(--bg-color);
+  border: 1px solid var(--border-color);
+  border-radius: var(--tag-radius);
+  color: var(--text-secondary);
+  user-select: none;
+}
+</style>
