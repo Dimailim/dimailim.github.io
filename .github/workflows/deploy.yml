@@ -29,6 +29,8 @@ jobs:
         with:
           node-version: lts/*
           cache: npm
+      - name: Pin npm 10
+        run: npm install -g npm@10
       - name: Install dependencies
         run: npm ci
       - name: Run tests
@@ -53,6 +55,8 @@ jobs:
         with:
           node-version: lts/*
           cache: 'npm'
+      - name: Pin npm 10
+        run: npm install -g npm@10    
       - name: Install dependencies
         run: npm ci
       - name: Build
