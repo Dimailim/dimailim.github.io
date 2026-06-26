@@ -6,8 +6,8 @@ A bilingual (EN/RU) single-page developer portfolio built with Vue 3.
 
 - **Bilingual UI (EN/RU)** powered by `vue-i18n`.
 - **Light / dark theme** with system-preference detection.
-- **Accessible by design** — semantic roles and labels, keyboard-focusable controls.
-- **Interactive achievements** — modal dialog with a custom, swipeable carousel.
+- **Accessible by design** - semantic roles and labels, keyboard-focusable controls.
+- **Interactive achievements** - modal dialog with a custom, swipeable carousel.
 - **Responsive layout** for desktop and mobile.
 
 ## Tech Stack
@@ -17,7 +17,7 @@ A bilingual (EN/RU) single-page developer portfolio built with Vue 3.
 - **i18n:** vue-i18n
 - **Unit / integration tests:** Vitest + @vue/test-utils
 - **End-to-end tests:** Playwright
-- **No router / no store** — shared state is handled with composables.
+- **No router / no store** - shared state is handled with composables.
 
 ## Getting Started
 
@@ -62,8 +62,9 @@ npm run test:e2e:ui     # run E2E tests in interactive UI mode
 
 ## Project Structure
 
-- `src/components` — UI components
-- `src/composables` — reusable stateful logic (theme, language, scroll-spy)
-- `src/data` — translations (`en`/`ru`) and image assets
-- `tests` — unit & integration tests (Vitest)
-- `e2e` — end-to-end tests (Playwright)
+- `src/components` - UI components
+- `src/composables` - reusable stateful logic (theme, language, scroll-spy)
+- `src/data` - translations (`en`/`ru`)
+- `public` - image assets
+- `tests` - unit & integration tests (Vitest)
+- `e2e` - end-to-end tests (Playwright)
