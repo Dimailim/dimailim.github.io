@@ -22,11 +22,11 @@ describe('AchievementModal component', () => {
   it('should display achievement modal', () => {
 	  const wrapper = achievementModalMount('en', fakeItem);
 
-	  expect(wrapper.find('.modal-overlay').exists()).toBe(true);
+	  expect(wrapper.find('.modal__overlay').exists()).toBe(true);
 	  expect(wrapper.find('h3').text()).toBe(fakeItem.title);
-	  expect(wrapper.findAll('.achievement-card__tag').length).toBe(fakeItem.tags.length);
-	  expect(wrapper.findAll('.modal-full-desc').length).toBe(fakeItem.fullDesc.length);
-	  expect(wrapper.find('.modal-gallery').exists()).toBe(false);
+	  expect(wrapper.findAll('.tag').length).toBe(fakeItem.tags.length);
+	  expect(wrapper.findAll('.modal__full-desc').length).toBe(fakeItem.fullDesc.length);
+	  expect(wrapper.find('.modal__gallery').exists()).toBe(false);
 	  expect(wrapper.find('.modal-links').exists()).toBe(false);
 	  expect(wrapper.find('.links-title').exists()).toBe(false);
   });
@@ -34,9 +34,9 @@ describe('AchievementModal component', () => {
   it('should close modal window by button', async () => {
 	  const wrapper = achievementModalMount('en', fakeItem);
 
-	  expect(wrapper.find('.modal-overlay').exists()).toBe(true);
+	  expect(wrapper.find('.modal__overlay').exists()).toBe(true);
 	  // Close window.
-	  const closeHeaderButton = wrapper.find('.modal-close');
+	  const closeHeaderButton = wrapper.find('.modal__close');
 	  await closeHeaderButton.trigger('click');
 	  expect(wrapper.emitted('closeModal')).toHaveLength(1);
   });
@@ -44,8 +44,8 @@ describe('AchievementModal component', () => {
   it('should close modal window by clicking footer close button', async () => {
 	  const wrapper = achievementModalMount('en', fakeItem);
 
-	  expect(wrapper.find('.modal-overlay').exists()).toBe(true);
-	  const closeFooterButton = wrapper.find('.modal-footer-close');
+	  expect(wrapper.find('.modal__overlay').exists()).toBe(true);
+	  const closeFooterButton = wrapper.find('.modal__footer-close');
 	  await closeFooterButton.trigger('click');
 	  expect(wrapper.emitted('closeModal')).toHaveLength(1);
   });
@@ -53,23 +53,23 @@ describe('AchievementModal component', () => {
   it('should close modal window by clicking overlay area', async () => {
 	  const wrapper = achievementModalMount('en', fakeItem);
 
-	  expect(wrapper.find('.modal-overlay').exists()).toBe(true);
-	  const overlayElem = wrapper.find('.modal-overlay');
+	  expect(wrapper.find('.modal__overlay').exists()).toBe(true);
+	  const overlayElem = wrapper.find('.modal__overlay');
 	  await overlayElem.trigger('click');
 	  expect(wrapper.emitted('closeModal')).toHaveLength(1);
   });
 
 	it('should NOT close when clicking inside modal container', async () => {
 		const wrapper = achievementModalMount('en', fakeItem);
-		await wrapper.find('.modal-container').trigger('click');
+		await wrapper.find('.modal__container').trigger('click');
 		expect(wrapper.emitted('closeModal')).toBeFalsy();
 	});
 
-  it('modal-overlay should doesn\'t exist because of null item', () => {
+  it('modal__overlay should doesn\'t exist because of null item', () => {
 	  const emptyItem = null;
 	  const wrapper = achievementModalMount('en', emptyItem);
 
-	  expect(wrapper.find('.modal-overlay').exists()).toBe(false);
+	  expect(wrapper.find('.modal__overlay').exists()).toBe(false);
   });
 
   it('modal window with screenshot section', async () => {
@@ -87,14 +87,14 @@ describe('AchievementModal component', () => {
 
 	 const wrapper = achievementModalMount('en', fakeItemWithScreenshot, true);
 
-	 expect(wrapper.find('.modal-overlay').exists()).toBe(true);
-	 const screenshotSection = wrapper.find('.modal-gallery');
+	 expect(wrapper.find('.modal__overlay').exists()).toBe(true);
+	 const screenshotSection = wrapper.find('.modal__gallery');
 	 expect(screenshotSection.exists()).toBe(true);
-	 const screenshotItems = wrapper.findAll('.modal-gallery__item');
+	 const screenshotItems = wrapper.findAll('.modal__gallery-item');
 	 expect(screenshotItems.length).toBe(fakeItemWithScreenshot.screenshots.length);
 
 	 // Check expandScreenshot emit
-	  const screenshotSpoilerButton = wrapper.find('.modal-spoiler-btn');
+	  const screenshotSpoilerButton = wrapper.find('.modal__spoiler-btn');
 	  await screenshotSpoilerButton.trigger('click');
 	  expect(wrapper.emitted('toggleScreenshots')).toHaveLength(1);
   });
@@ -114,9 +114,9 @@ describe('AchievementModal component', () => {
 	  };
 
 	  const wrapper = achievementModalMount('en', fakeItemWithCommitSection);
-	  expect(wrapper.find('.modal-overlay').exists()).toBe(true);
-	  expect(wrapper.find('.links-title').text()).toBe(fakeItemWithCommitSection.commit_title);
-	  expect(wrapper.find('.modal-links').exists()).toBe(true);
-	  expect(wrapper.findAll('.modal-link-btn').length).toBe(fakeItemWithCommitSection.commit_links.length);
+	  expect(wrapper.find('.modal__overlay').exists()).toBe(true);
+	  expect(wrapper.find('.modal__links-title').text()).toBe(fakeItemWithCommitSection.commit_title);
+	  expect(wrapper.find('.modal__links').exists()).toBe(true);
+	  expect(wrapper.findAll('.modal__link-btn').length).toBe(fakeItemWithCommitSection.commit_links.length);
   });
 });

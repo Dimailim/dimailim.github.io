@@ -131,7 +131,7 @@
           "Reverse Engineering",
           "Optimization"
         ],
-        "desc": "Built complex calculation features from scratch - Solver, Goal Seek, iterative calculation - in a spreadsheet editor used by millions.",
+        "desc": "Built complex calculation features from scratch in a spreadsheet editor.",
         "fullDesc": [
           "Designed and built several Excel-level features from scratch for a spreadsheet editor used by millions. Most of them were included in the product's release news and closed long-time user requests.",
           "Solver: reverse-engineered Excel's Solver, studied the math behind it, and built a linear optimization engine based on the Simplex method from scratch (using reference implementations as a base). Then I integrated it into the editor. The hardest parts were the analysis, the reverse engineering, and the integration. Validation of the model input gave more test bugs than the calculation algorithm itself.",
@@ -186,7 +186,7 @@
           "Functional Programming",
           "JSON"
         ],
-        "desc": "A mapping layer that puts messy external data into the correct fields of a low-code platform. It reduced import errors and support load.",
+        "desc": "A mapping layer that puts messy external data into the correct fields of a low-code platform.",
         "fullDesc": [
           "Built a data-mapping layer for a low-code platform to fix how data from external integrations was imported.",
           "The problem: incoming data often had fields in unpredictable places, so the platform's standard mapping put them into wrong database attributes, or lost them completely when it could not find a match.",
@@ -204,7 +204,7 @@
           "CLI",
           "Automation"
         ],
-        "desc": "A CLI tool that converts CSV reference data into ready QUnit tests - automating coverage of 500+ spreadsheet formulas.",
+        "desc": "A CLI tool that converts CSV reference data into ready QUnit tests.",
         "fullDesc": [
           "A Node.js CLI utility I built to automate writing unit tests for spreadsheet formulas.",
           "The task: fully cover 500+ implemented formulas with tests - positive, negative, and edge cases. An Excel reference table was used as the standard, and ONLYOFFICE output was compared with it. I used AI to speed up creating the test cases.",
@@ -235,7 +235,7 @@
           "Cocos Engine",
           "OOP"
         ],
-        "desc": "A Blast-style puzzle game built from scratch in Cocos.  I made it to learn the engine, TypeScript, and OOP in practice",
+        "desc": "A Blast-style puzzle game built from scratch in Cocos.",
         "fullDesc": [
           "A Blast-style puzzle game I built to learn the Cocos engine (Cocos Creator 2.4.15) from scratch, along with TypeScript and OOP in practice.",
           "Implemented the core blast mechanic, progression, boosters, and win/lose conditions - a working, playable demo.",

@@ -18,43 +18,26 @@ describe('About component', () => {
 		expect(wrapper.find('#about').exists()).toBe(true);
 	});
 
-	it('should render the correct text. EN', () => {
-		const wrapper = aboutMount();
+	it.each([
+		['en', en],
+		['ru', ru]
+	])('should render the correct text (%s)', (locale, messages) => {
+		const wrapper = aboutMount(locale);
 		const paragraphs = wrapper.findAll('p');
 
-		expect(wrapper.find('h2').text()).toBe(en.Common_data.Common_title_about);
+		expect(wrapper.find('h2').text()).toBe(messages.Common_data.Common_title_about);
 		// Main text
-		for (let i = 0, length = en.About_data.main_text.length; i < length; i++) {
-			expect(paragraphs[i].text()).toBe(en.About_data.main_text[i]);
+		for (let i = 0, length = messages.About_data.main_text.length; i < length; i++) {
+			expect(paragraphs[i].text()).toBe(messages.About_data.main_text[i]);
 		}
 
 		// Lists
-		const extraActivitiesSection = wrapper.findAll('.about__extra');
+		const extraActivitiesSection = wrapper.findAll('.about__list');
 
-		expect(extraActivitiesSection[0].findAll('li').length).toBe(en.About_data.experience_incl_list.length);
-		expect(extraActivitiesSection[1].findAll('li').length).toBe(en.About_data.extra_activities_list.length);
-
-		// Status
-		expect(wrapper.find('.about__status').text()).toBe(en.About_data.availablity);
-	});
-
-	it('should render the correct text. RU', () => {
-		const wrapper = aboutMount('ru');
-		const paragraphs = wrapper.findAll('p');
-
-		expect(wrapper.find('h2').text()).toBe(ru.Common_data.Common_title_about);
-		// Main text
-		for (let i = 0, length = ru.About_data.main_text.length; i < length; i++) {
-			expect(paragraphs[i].text()).toBe(ru.About_data.main_text[i]);
-		}
-
-		// Lists
-		const extraActivitiesSection = wrapper.findAll('.about__extra');
-
-		expect(extraActivitiesSection[0].findAll('li').length).toBe(ru.About_data.experience_incl_list.length);
-		expect(extraActivitiesSection[1].findAll('li').length).toBe(ru.About_data.extra_activities_list.length);
+		expect(extraActivitiesSection[0].findAll('li').length).toBe(messages.About_data.experience_incl_list.length);
+		expect(extraActivitiesSection[1].findAll('li').length).toBe(messages.About_data.extra_activities_list.length);
 
 		// Status
-		expect(wrapper.find('.about__status').text()).toBe(ru.About_data.availablity);
+		expect(wrapper.find('.about__status').text()).toBe(messages.About_data.availablity);
 	});
 });

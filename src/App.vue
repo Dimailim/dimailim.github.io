@@ -12,8 +12,8 @@ import Experience from './components/Experience.vue';
 import Achievements from './components/Achievements.vue';
 import Footer from './components/Footer.vue';
 
-const {locale, initLang} = useLanguage();
-const {initTheme} = useTheme();
+const { locale, initLang } = useLanguage();
+const { initTheme } = useTheme();
 
 initLang();
 initTheme();

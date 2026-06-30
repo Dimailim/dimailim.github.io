@@ -6,9 +6,10 @@ const useLanguage = () => {
 
 	const toggleLang = (newLang) => {
 		locale.value = newLang;
+		localStorage.setItem('lang', newLang);
 	};
 	const initLang = () => {
-		const clientLang = navigator.language.split('-')[0];
+		const clientLang = localStorage.getItem('lang') || navigator.language.split('-')[0];
 		locale.value = supportedLanguages.includes(clientLang) ? clientLang : 'en';
 	};
 

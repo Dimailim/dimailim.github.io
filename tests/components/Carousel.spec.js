@@ -124,4 +124,32 @@ describe('Carousel component', () => {
 		await viewport.trigger('pointerup', {clientX: 200});
 		expect(viewportElement.scrollTo).not.toHaveBeenCalled();
 	});
+
+	it('should suppress click after a swipe', async () => {
+		const wrapper = carouselMount(carouselItems);
+		const viewport = wrapper.find('.carousel__viewport');
+
+		await viewport.trigger('pointerdown', { clientX: 200 });
+		await viewport.trigger('pointerup', { clientX: 100 }); // сдвиг 100px → свайп
+
+		const clickEvent = new MouseEvent('click', { bubbles: true });
+		const stopSpy = vi.spyOn(clickEvent, 'stopPropagation');
+		viewport.element.dispatchEvent(clickEvent);
+
+		expect(stopSpy).toHaveBeenCalled();
+	});
+
+	it('should NOT suppress click on a tap (no movement)', async () => {
+		const wrapper = carouselMount(carouselItems);
+		const viewport = wrapper.find('.carousel__viewport');
+
+		await viewport.trigger('pointerdown', { clientX: 150 });
+		await viewport.trigger('pointerup', { clientX: 150 }); // без сдвига → тап
+
+		const clickEvent = new MouseEvent('click', { bubbles: true });
+		const stopSpy = vi.spyOn(clickEvent, 'stopPropagation');
+		viewport.element.dispatchEvent(clickEvent);
+
+		expect(stopSpy).not.toHaveBeenCalled();
+	});
 });

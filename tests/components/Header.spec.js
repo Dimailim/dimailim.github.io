@@ -18,46 +18,28 @@ describe('Header component', () => {
 		useTheme().theme.value = 'light';
 	})
 
-	it('should render correctly all header elements. EN', () => {
-		const {wrapper} = mountHeader();
+	it.each([
+		['en', en],
+		['ru', ru]
+	])('should render correctly all header elements. (%s)', (locale, messages) => {
+		const {wrapper} = mountHeader(locale);
 		const title = wrapper.find('.header__name');
 		const navLinks = wrapper.findAll('.header__nav-link');
 		const socialLinks = wrapper.findAll('.header__icon-link');
 		const buttons = wrapper.findAll('button');
 
-		expect(title.text()).toBe(en.Common_data.Common_name);
+		expect(title.text()).toBe(messages.Common_data.Common_name);
 		expect(navLinks.length).toBe(4);
-		expect(navLinks[0].text()).toBe(en.Common_data.Common_title_about);
-		expect(navLinks[1].text()).toBe(en.Common_data.Common_title_skills);
-		expect(navLinks[2].text()).toBe(en.Common_data.Common_title_experience);
-		expect(navLinks[3].text()).toBe(en.Common_data.Common_title_achievements);
+		expect(navLinks[0].text()).toBe(messages.Common_data.Common_title_about);
+		expect(navLinks[1].text()).toBe(messages.Common_data.Common_title_skills);
+		expect(navLinks[2].text()).toBe(messages.Common_data.Common_title_experience);
+		expect(navLinks[3].text()).toBe(messages.Common_data.Common_title_achievements);
 		expect(socialLinks.length).toBe(2);
-		expect(socialLinks[0].attributes('title')).toBe(en.Common_data.Common_links.github_title);
-		expect(socialLinks[0].attributes('href')).toBe(en.Common_data.Common_links.github);
-		expect(socialLinks[1].attributes('title')).toBe(en.Common_data.Common_links.linkedin_title);
-		expect(socialLinks[1].attributes('href')).toBe(en.Common_data.Common_links.linkedin);
+		expect(socialLinks[0].attributes('title')).toBe(messages.Common_data.Common_links.github_title);
+		expect(socialLinks[0].attributes('href')).toBe(messages.Common_data.Common_links.github);
+		expect(socialLinks[1].attributes('title')).toBe(messages.Common_data.Common_links.linkedin_title);
+		expect(socialLinks[1].attributes('href')).toBe(messages.Common_data.Common_links.linkedin);
 		expect(buttons.length).toBe(3);
-	});
-
-	it('should render correctly all header elements. RU', () => {
-		const {wrapper} = mountHeader('ru');
-		const title = wrapper.find('.header__name');
-		const navLinks = wrapper.findAll('.header__nav-link');
-		const socialLinks = wrapper.findAll('.header__icon-link');
-		const buttons = wrapper.findAll('button');
-
-		expect(title.text()).toBe(ru.Common_data.Common_name);
-		expect(navLinks.length).toBe(4);
-		expect(navLinks[0].text()).toBe(ru.Common_data.Common_title_about);
-		expect(navLinks[1].text()).toBe(ru.Common_data.Common_title_skills);
-		expect(navLinks[2].text()).toBe(ru.Common_data.Common_title_experience);
-		expect(navLinks[3].text()).toBe(ru.Common_data.Common_title_achievements);
-		expect(socialLinks.length).toBe(2);
-		expect(socialLinks[0].attributes('title')).toBe(ru.Common_data.Common_links.github_title);
-		expect(socialLinks[0].attributes('href')).toBe(ru.Common_data.Common_links.github);
-		expect(socialLinks[1].attributes('title')).toBe(ru.Common_data.Common_links.linkedin_title);
-		expect(socialLinks[1].attributes('href')).toBe(ru.Common_data.Common_links.linkedin);
-		expect(buttons.length).toBe(3)
 	});
 
 	it('should be eng localization active by default', () => {
@@ -199,10 +181,10 @@ describe('Header component', () => {
 		expect(window.scrollTo).toHaveBeenLastCalledWith({ top: 0, behavior: 'smooth' });
 
 		await navLinks[1].trigger('click');
-		expect(window.scrollTo).toHaveBeenLastCalledWith({ top: -400, behavior: 'smooth' });
+		expect(window.scrollTo).toHaveBeenLastCalledWith({ top: -100, behavior: 'smooth' });
 
 		await navLinks[2].trigger('click');
-		expect(window.scrollTo).toHaveBeenLastCalledWith({ top: -100, behavior: 'smooth' });
+		expect(window.scrollTo).toHaveBeenLastCalledWith({ top: 0, behavior: 'smooth' });
 
 		await navLinks[3].trigger('click');
 		expect(window.scrollTo).toHaveBeenLastCalledWith({ top: 0, behavior: 'smooth' });

@@ -1,12 +1,40 @@
 <script setup>
-import {ref} from 'vue';
+import {nextTick, ref, watch} from 'vue';
 import {useI18n} from 'vue-i18n';
 
-const {t, tm} = useI18n();
+const { t, tm, locale } = useI18n();
+
 const expandedId = ref(null);
+const contentHeight = ref(0);
+
+const contentRefs = new Map();
+
+watch(locale, async () => {
+  if (expandedId.value) {
+    await nextTick();
+    measureContentHeight(expandedId.value);
+  }
+});
 
 const toggleExpand = (id) => {
   expandedId.value = expandedId.value === id ? null : id;
+  measureContentHeight(id);
+};
+
+const setContentRef = (id, element) => {
+  if (!element && contentRefs.has(id)) {
+    contentRefs.delete(id);
+    return;
+  }
+
+  contentRefs.set(id, element);
+};
+
+const measureContentHeight = (id) => {
+  const element = contentRefs.get(id);
+  if (element) {
+    contentHeight.value = element.scrollHeight;
+  }
 };
 
 </script>
@@ -28,16 +56,17 @@ const toggleExpand = (id) => {
           </div>
           <div class="experience-item__meta">
             <span class="experience-item__period">{{ item.period }}</span>
-            <span class="experience-item__icon">
-              <span class="material-symbols-outlined">
-                  arrow_drop_down_circle
-              </span>
+            <span class="material-symbols-outlined experience-item__icon">
+              arrow_drop_down_circle
             </span>
           </div>
         </div>
         
-        <div class="experience-item__content">
-          <ul class="experience-item__details">
+        <div class="experience-item__content"
+             :ref="(element) => setContentRef(item.id, element)"
+             :style="{ 'max-height': (expandedId === item.id ? contentHeight : 0) + 'px' }"
+        >
+          <ul class="list-marked experience-item__details">
             <li v-for="(detail, index) in item.details" :key="index" class="list-marked__item">
               {{ detail }}
             </li>
@@ -103,19 +132,16 @@ const toggleExpand = (id) => {
 }
 
 .experience-item__content {
-  max-height: 0;
-  transition: max-height 1s cubic-bezier(0, 1, 0, 1);
+  transition: max-height 0.5s ease-out;
   background-color: var(--bg-color);
 }
 
 .experience-item--expanded .experience-item__content {
-  max-height: 1000px;
-  transition: max-height 1s ease-in;
+  transition: max-height 0.5s ease-in;
 }
 
 .experience-item__details {
   padding: 1.25rem 1.25rem 1.25rem 2.5rem;
-  list-style: none;
 }
 
 @media (max-width: 768px) {

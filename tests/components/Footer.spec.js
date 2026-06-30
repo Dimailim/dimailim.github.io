@@ -26,59 +26,40 @@ describe('Footer component', () => {
 		expect(copyrightSection.text()).toContain(currentYear.toString());
 	});
 
-	it('should display header text. EN', () => {
-		const {wrapper} = mountFooter();
+	it.each([
+		['en', en],
+		['ru', ru]
+	])('should display header text. (%s)', (locale, messages) => {
+		const {wrapper} = mountFooter(locale);
 		const title = wrapper.find('h4');
 
-		expect(title.text()).toBe(en.Common_data.Footer_title_contact);
+		expect(title.text()).toBe(messages.Common_data.Footer_title_contact);
 	});
 
-	it('should display all links. EN', () => {
-		const {wrapper, i18n} = mountFooter();
+	it.each([
+		['en', en],
+		['ru', ru]
+	])('should display all links. (%s)', (locale, messages) => {
+		const {wrapper, i18n} = mountFooter(locale);
 		const links = wrapper.findAll('a');
 
 		expect(links.length).toBe(3);
-		expect(links[0].text()).toBe(en.Common_data.Common_links.github_title);
-		expect(links[0].attributes('href')).toBe(en.Common_data.Common_links.github);
-		expect(links[1].text()).toBe(en.Common_data.Common_links.linkedin_title);
-		expect(links[1].attributes('href')).toBe(en.Common_data.Common_links.linkedin);
-		expect(links[2].text()).toBe(en.Common_data.Common_links.email_title);
+		expect(links[0].text()).toBe(messages.Common_data.Common_links.github_title);
+		expect(links[0].attributes('href')).toBe(messages.Common_data.Common_links.github);
+		expect(links[1].text()).toBe(messages.Common_data.Common_links.linkedin_title);
+		expect(links[1].attributes('href')).toBe(messages.Common_data.Common_links.linkedin);
+		expect(links[2].text()).toBe(messages.Common_data.Common_links.email_title);
 		const email = i18n.global.t('Common_data.Common_links.email');
 		expect(links[2].attributes('href')).toBe('mailto:' + email);
 	});
 
-	it('should display the correct copyright text. EN', () => {
-		const {wrapper} = mountFooter();
+	it.each([
+		['en', en],
+		['ru', ru]
+	])('should display the correct copyright text. (%s)', (locale, messages) => {
+		const {wrapper} = mountFooter(locale);
 		const copyrightSection = wrapper.find('.footer__copy')
 
-		expect(copyrightSection.text()).toContain(`${currentYear} ${en.Common_data.Common_name}`);
+		expect(copyrightSection.text()).toContain(`${currentYear} ${messages.Common_data.Common_name}`);
 	});
-	
-	it('should display correct header. RU', () => {
-		const {wrapper} = mountFooter('ru');
-		const title = wrapper.find('h4');
-
-		expect(title.text()).toBe(ru.Common_data.Footer_title_contact);
-	});
-
-	it('should display all links. RU', () => {
-		const {wrapper, i18n} = mountFooter('ru');
-		const links = wrapper.findAll('a');
-
-		expect(links.length).toBe(3);
-		expect(links[0].text()).toBe(ru.Common_data.Common_links.github_title);
-		expect(links[0].attributes('href')).toBe(ru.Common_data.Common_links.github);
-		expect(links[1].text()).toBe(ru.Common_data.Common_links.linkedin_title);
-		expect(links[1].attributes('href')).toBe(ru.Common_data.Common_links.linkedin);
-		expect(links[2].text()).toBe(ru.Common_data.Common_links.email_title);
-		const email = i18n.global.t('Common_data.Common_links.email');
-		expect(links[2].attributes('href')).toBe('mailto:' + email);
-	});
-
-	it('should display the correct copyright text. RU', () => {
-		const {wrapper} = mountFooter('ru');
-		const copyrightSection = wrapper.find('.footer__copy');
-
-		expect(copyrightSection.text()).toContain(`${currentYear} ${ru.Common_data.Common_name}`);
-	})
 });

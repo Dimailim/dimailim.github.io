@@ -4,19 +4,22 @@ import {useI18n} from 'vue-i18n';
 import useLanguage from '../composables/useLanguage';
 import useTheme from '../composables/useTheme';
 import useIntersectionObserver from '../composables/useIntersectionObserver.js';
+import useMediaQuery from '../composables/useMediaQuery.js';
 
-const {t} = useI18n();
-const {theme, toggleTheme} = useTheme();
-const {locale, toggleLang} = useLanguage();
-const {visibleElementId, initObservers, disconnectObserver} = useIntersectionObserver({rootMargin: '60px 0px 0px 0px', threshold: 0.7});
+const { t } = useI18n();
+const { theme, toggleTheme } = useTheme();
+const { locale, toggleLang } = useLanguage();
+const isTablet = useMediaQuery('(max-width: 900px)');
+const threshold = isTablet.value ? 0.33 : 0.65
+const { visibleElementId, initObservers, disconnectObserver } = useIntersectionObserver({rootMargin: '80px 0px 0px 0px', threshold});
 
 const scrollTo = (id) => {
   const TOP_POSITION = 0;
   const element = document.getElementById(id);
   const shiftTop = {
     'about': 0,
-    'skills': 400,
-    'experience': 100,
+    'skills': 100,
+    'experience': 0,
     'achievements': 0,
   };
 
@@ -96,26 +99,23 @@ onUnmounted(() => {
           </a>
         </div>
 
-        <div class="header__controls">
-          <div class="header__lang-switcher">
-            <button 
-              class="header__lang-btn" 
+        <div class="header__lang-switcher">
+          <button
+              class="header__lang-btn"
               :class="{ 'header__lang-btn--active': locale === 'en' }"
               @click="toggleLang('en')"
               :aria-label="t('Common_data.Common_button_switchToEn')"
             >EN</button>
-            <button 
-              class="header__lang-btn" 
+          <button
+              class="header__lang-btn"
               :class="{ 'header__lang-btn--active': locale === 'ru' }"
               @click="toggleLang('ru')"
               :aria-label="t('Common_data.Common_button_switchToRu')"
             >RU</button>
-          </div>
-          
-          <button class="header__theme-btn" @click="toggleTheme()" :aria-label="t('Common_data.Common_button_toggleTheme')">
-           <span class="material-symbols-outlined">{{ theme === 'light' ? 'moon_stars' : 'light_mode' }}</span>
-          </button>
         </div>
+        <button class="header__theme-btn" @click="toggleTheme()" :aria-label="t('Common_data.Common_button_toggleTheme')">
+          <span class="material-symbols-outlined">{{ theme === 'light' ? 'moon_stars' : 'light_mode' }}</span>
+        </button>
       </div>
     </div>
   </header>
@@ -136,6 +136,7 @@ onUnmounted(() => {
   display: flex;
   justify-content: space-between;
   align-items: center;
+  gap: 1rem;
 }
 
 .header__logo {
@@ -157,7 +158,7 @@ onUnmounted(() => {
 .header__nav-link {
   color: var(--text-secondary);
   font-weight: 500;
-  font-size: 0.9rem;
+  font-size: 0.8rem;
   padding: 0.5rem 0;
   transition: color var(--transition-fast);
   position: relative;
@@ -210,12 +211,6 @@ onUnmounted(() => {
 
 .header__icon-link--linkedin:hover {
   color: #0077b5;
-}
-
-.header__controls {
-  display: flex;
-  align-items: center;
-  gap: 1rem;
 }
 
 .header__lang-switcher {
