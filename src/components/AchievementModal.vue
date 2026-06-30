@@ -1,37 +1,45 @@
 <script setup>
 import {useI18n} from 'vue-i18n';
+import {onMounted, onUnmounted} from 'vue';
 
-defineProps({
+const props = defineProps({
   selectedItem: Object,
   showScreenshots: Boolean
 });
-defineEmits(['closeModal', 'toggleScreenshots'])
+const emit = defineEmits(['closeModal', 'toggleScreenshots'])
 
 const { t } = useI18n();
+const onKeydown = (event) => {
+  if (event.key === 'Escape' && props.selectedItem) {
+    emit('closeModal');
+  }
+};
+onMounted(() => document.addEventListener('keydown', onKeydown));
+onUnmounted(() => document.removeEventListener('keydown', onKeydown));
 </script>
 
 <template>
   <Transition name="modal">
-    <div v-if="selectedItem" class="modal-overlay" @click.self="$emit('closeModal')">
-      <div class="modal-container" role="dialog" aria-modal="true" aria-labelledby="modal-title">
-        <header class="modal-header">
+    <div v-if="selectedItem" class="modal__overlay" @click.self="$emit('closeModal')">
+      <div class="modal__container" role="dialog" aria-modal="true" aria-labelledby="modal-title" tabindex="0">
+        <header class="modal__header">
           <h3 id="modal-title">{{ selectedItem.title }}</h3>
-          <button class="modal-close" @click="$emit('closeModal')" :aria-label="t('Achievements_data.modal_close')">
+          <button class="modal__close" @click="$emit('closeModal')" :aria-label="t('Achievements_data.modal_close')">
             <span class="material-symbols-outlined">close_small</span>
           </button>
         </header>
 
-        <div class="achievement-card__tags modal-tags">
-              <span v-for="tag in selectedItem.tags" :key="tag" class="achievement-card__tag">
+        <div class="tags modal__tags">
+              <span v-for="tag in selectedItem.tags" :key="tag" class="tag">
                 {{ tag }}
               </span>
         </div>
 
-        <div class="modal-content">
-          <p v-for="(line, index) in selectedItem.fullDesc" class="modal-full-desc" :key="index">{{ line }}</p>
+        <article class="modal__content" aria-labelledby="modal-title">
+          <p v-for="(line, index) in selectedItem.fullDesc" class="modal__full-desc" :key="index">{{ line }}</p>
 
-          <div v-if="selectedItem.screenshots">
-            <button class="modal-spoiler-btn" @click="$emit('toggleScreenshots')">
+          <template v-if="selectedItem.screenshots">
+            <button class="modal__spoiler-btn" @click="$emit('toggleScreenshots')">
                 <span class="material-symbols-outlined">
                   {{ showScreenshots ? 'keyboard_arrow_up' : 'keyboard_arrow_down' }}
                 </span>
@@ -39,25 +47,25 @@ const { t } = useI18n();
             </button>
 
             <Transition name="spoiler" >
-              <div v-if="showScreenshots" class="modal-gallery">
-                <div v-for="(img, idx) in selectedItem.screenshots" :key="idx" class="modal-gallery__item">
-                  <img :src="img.src" :alt="img.alt" class="modal-gallery__img">
-                  <p v-if="img.alt" class="modal-gallery__caption">{{ img.alt }}</p>
+              <div v-if="showScreenshots" class="modal__gallery">
+                <div v-for="(img, idx) in selectedItem.screenshots" :key="idx" class="modal__gallery-item">
+                  <img :src="img.src" :alt="img.alt" class="modal__gallery-img">
+                  <p v-if="img.alt" class="modal__gallery-caption">{{ img.alt }}</p>
                 </div>
               </div>
             </Transition>
-          </div>
+          </template>
 
-          <p v-if="selectedItem.commit_title" class="links-title">{{selectedItem.commit_title}}</p>
-          <div v-if="selectedItem.commit_links" class="modal-links">
-            <a v-for="linkData in selectedItem.commit_links" :key="linkData.alt" :href="linkData.url" target="_blank" class="modal-link-btn">
+          <p v-if="selectedItem.commit_title" class="modal__links-title">{{selectedItem.commit_title}}</p>
+          <div v-if="selectedItem.commit_links" class="modal__links">
+            <a v-for="linkData in selectedItem.commit_links" :key="linkData.alt" :href="linkData.url" target="_blank" class="modal__link-btn">
               {{ linkData.alt }} ↗
             </a>
           </div>
-        </div>
+        </article>
 
-        <footer class="modal-footer">
-          <button class="modal-footer-close" @click="$emit('closeModal')">{{ t('Achievements_data.modal_close') }}</button>
+        <footer class="modal__footer">
+          <button class="modal__footer-close" @click="$emit('closeModal')">{{ t('Achievements_data.modal_close') }}</button>
         </footer>
       </div>
     </div>
@@ -66,7 +74,7 @@ const { t } = useI18n();
 
 <style scoped>
 /* Modal Styles */
-.modal-overlay {
+.modal__overlay {
   position: fixed;
   top: 0;
   left: 0;
@@ -77,13 +85,14 @@ const { t } = useI18n();
   align-items: center;
   justify-content: center;
   z-index: var(--z-index-modal);
+  padding: 1rem;
 }
 
-.modal-container {
+.modal__container {
   background: var(--card-bg);
   width: 100%;
   height: 100%;
-  max-width: 80vw;
+  max-width: 800px;
   max-height: 90vh;
   border-radius: var(--block-radius);
   display: flex;
@@ -92,7 +101,7 @@ const { t } = useI18n();
   box-shadow: var(--shadow);
 }
 
-.modal-header {
+.modal__header {
   padding: 1.5rem;
   border-bottom: 1px solid var(--border-color);
   display: flex;
@@ -100,7 +109,7 @@ const { t } = useI18n();
   align-items: center;
 }
 
-.modal-close {
+.modal__close {
   background: none;
   border: none;
   cursor: pointer;
@@ -108,27 +117,11 @@ const { t } = useI18n();
   display: flex;
 }
 
-.modal-tags {
+.modal__tags {
   padding: 1rem 1.5rem 0;
 }
-.achievement-card__tags {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 0.5rem;
-  margin-bottom: 1rem;
-}
 
-.achievement-card__tag {
-  font-size: 0.75rem;
-  padding: 0.25rem 0.6rem;
-  background: var(--bg-color);
-  border: 1px solid var(--border-color);
-  border-radius: var(--tag-radius);
-  color: var(--text-secondary);
-  user-select: none;
-}
-
-.modal-content {
+.modal__content {
   padding: 1.5rem;
   overflow: auto;
   flex-grow: 1;
@@ -136,11 +129,11 @@ const { t } = useI18n();
   -ms-overflow-style: none;
 }
 
-.modal-full-desc {
+.modal__full-desc {
   margin-bottom: 1rem;
 }
 
-.modal-spoiler-btn {
+.modal__spoiler-btn {
   display: flex;
   align-items: center;
   gap: 0.5rem;
@@ -155,14 +148,14 @@ const { t } = useI18n();
   transition: background-color var(--transition-fast);
 }
 
-.modal-footer {
+.modal__footer {
   padding: 1rem 1.5rem;
   border-top: 1px solid var(--border-color);
   display: flex;
   justify-content: flex-end;
 }
 
-.modal-footer-close {
+.modal__footer-close {
   padding: 0.5rem 1.5rem;
   background: var(--bg-color);
   border: 1px solid var(--border-color);
@@ -173,11 +166,11 @@ const { t } = useI18n();
   transition: background-color var(--transition-fast);
 }
 
-.modal-spoiler-btn:hover, .modal-footer-close:hover  {
+.modal__spoiler-btn:hover, .modal__footer-close:hover  {
   background: var(--border-color);
 }
 
-.modal-gallery {
+.modal__gallery {
   margin-top: 1rem;
   display: flex;
   flex-direction: column;
@@ -185,12 +178,12 @@ const { t } = useI18n();
   align-items: center;
 }
 
-.modal-gallery__item {
+.modal__gallery-item {
   width: 100%;
   max-width: 600px;
 }
 
-.modal-gallery__img {
+.modal__gallery-img {
   max-width: 100%;
   height: auto;
   border-radius: var(--block-radius);
@@ -200,23 +193,23 @@ const { t } = useI18n();
   object-fit: cover;
 }
 
-.modal-gallery__caption {
+.modal__gallery-caption {
   margin-top: 0.5rem;
   font-size: 0.85rem;
   color: var(--text-secondary);
   text-align: center;
 }
-.links-title {
+.modal__links-title {
   padding-top: 0.5rem;
 }
-.modal-links {
+.modal__links {
   display: flex;
   flex-wrap: wrap;
   gap: 1rem;
   margin-top: 1.5rem;
 }
 
-.modal-link-btn {
+.modal__link-btn {
   padding: 0.6rem 1.2rem;
   background: var(--btn-bg);
   color: var(--btn-text);
@@ -225,7 +218,7 @@ const { t } = useI18n();
   font-weight: 500;
   transition: opacity var(--transition-fast);
 }
-.modal-link-btn:hover {
+.modal__link-btn:hover {
   opacity: 0.5;
   text-decoration: none;
 }
@@ -251,18 +244,18 @@ const { t } = useI18n();
   opacity: 0;
 }
 
-.modal-enter-active .modal-container,
-.modal-leave-active .modal-container {
+.modal-enter-active .modal__container,
+.modal-leave-active .modal__container {
   transition: transform var(--transition-default);
 }
 
-.modal-enter-from .modal-container,
-.modal-leave-to .modal-container {
+.modal-enter-from .modal__container,
+.modal-leave-to .modal__container {
   transform: scale(0.95);
 }
 
 @media (max-width: 768px) {
-  .modal-container {
+  .modal__container {
     max-height: 95vh;
   }
 }

@@ -1,7 +1,7 @@
 <script setup>
 import {useI18n} from 'vue-i18n';
 
-const {t} = useI18n();
+const { t } = useI18n();
 const currentYear = new Date().getFullYear();
 </script>
 
@@ -15,7 +15,7 @@ const currentYear = new Date().getFullYear();
         <a :href="'mailto:' + t('Common_data.Common_links.email')" class="footer__link">{{t('Common_data.Common_links.email_title')}}</a>
       </div>
       <p class="footer__copy">
-        <span class="material-symbols-outlined footer__copy">copyright </span> {{ currentYear }} {{ t('Common_data.Common_name') }}
+        <span class="material-symbols-outlined footer__copy-icon" aria-hidden="true">copyright </span> {{ currentYear }} {{ t('Common_data.Common_name') }}
       </p>
     </div>
   </footer>
@@ -53,5 +53,9 @@ const currentYear = new Date().getFullYear();
 .footer__copy {
   font-size: 0.85rem;
   color: var(--text-secondary);
+}
+
+.footer__copy-icon {
+  font-size: 0.85rem;
 }
 </style>

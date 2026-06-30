@@ -26,6 +26,8 @@ const canNavigate = computed(() => ({
   prev: currentIndex.value > 0
 }));
 
+let canSwap = false;
+
 // Common scrolling logic for swap and buttons.
 const scrollToIndex = (index) => {
   const itemSize = viewportRef.value.clientWidth / props.perPage;
@@ -66,6 +68,7 @@ const prev = () => {
 // Swap logic for small screens.
 let clientXPointerDown = 0;
 const handlePointerDown = (event) => {
+  canSwap = false;
   clientXPointerDown = event.clientX; // Store clientX coordinate for calculate swap direction.
 };
 const handlePointerUp = (event) => {
@@ -73,9 +76,16 @@ const handlePointerUp = (event) => {
   if (swapDirection === 0) {
     return;
   }
-  const canSwap =  swapDirection > 0 ? canNavigate.value.next : canNavigate.value.prev;
+  canSwap =  swapDirection > 0 ? canNavigate.value.next : canNavigate.value.prev;
   if (canSwap) {
     swapDirection > 0 ? next() : prev();
+  }
+};
+
+const onClickCapture = (event) => {
+  if (canSwap) {
+    event.stopPropagation();
+    canSwap = false;
   }
 };
 </script>
@@ -103,14 +113,14 @@ const handlePointerUp = (event) => {
       @scroll="handleScroll"
       @pointerdown="handlePointerDown"
       @pointerup="handlePointerUp"
+      @click.capture="onClickCapture"
     >
       <div 
         v-for="(item, index) in items" 
         :key="index"
         class="carousel__item"
         :style="{ 
-          flex: `0 0 ${100 / perPage}%`,
-          width: '100%'
+          flex: `0 0 ${100 / perPage}%`
         }"
       >
         <slot :item="item" :index="index"></slot>

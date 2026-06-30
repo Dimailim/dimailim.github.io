@@ -1,7 +1,7 @@
 <script setup>
 import {useI18n} from 'vue-i18n';
 
-const {t, tm} = useI18n();
+const { t, tm } = useI18n();
 </script>
 
 <template>
@@ -10,18 +10,18 @@ const {t, tm} = useI18n();
     <p v-for="(line, index) in tm('About_data.main_text')" :key="index" class="about__text">
       {{ line }}
     </p>
-    <p class="about__text">
+    <h3 class="about__title">
       {{ t('About_data.experience_title') }}
-    </p>
-    <ul class="about__extra">
+    </h3>
+    <ul class="list-marked about__list">
       <li v-for="(item, index) in tm('About_data.experience_incl_list')" :key="index" class="list-marked__item">
         {{ item }}
       </li>
     </ul>
-    <p class="about__text">
+    <h3 class="about__title">
       {{ t('About_data.activities_title') }}
-    </p>
-    <ul class="about__extra">
+    </h3>
+    <ul class="list-marked about__list">
       <li v-for="(extraActivity, index) in tm('About_data.extra_activities_list')" :key="index" class="list-marked__item">
         {{ extraActivity.text }}
         <a v-if="extraActivity.link" :href="extraActivity.link" target="_blank">{{ extraActivity.nameLink }}</a>
@@ -41,13 +41,16 @@ const {t, tm} = useI18n();
 .about__text {
   margin-bottom: 1rem;
   line-height: 1.8;
-  font-size: 1.05rem;
+  font-size: 1.1rem;
 }
 
-.about__extra {
+.about__title {
+  font-size: 1.1rem;
+  font-weight: 500;
+}
+
+.about__list {
   margin-top: 1rem;
-  list-style: none;
-  padding-left: 0;
 }
 
 .about__status {

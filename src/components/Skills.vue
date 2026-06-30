@@ -1,7 +1,7 @@
 <script setup>
 import {useI18n} from 'vue-i18n';
 
-const {t, tm} = useI18n();
+const { t, tm } = useI18n();
 </script>
 
 <template>
@@ -35,6 +35,8 @@ const {t, tm} = useI18n();
 }
 
 .skill-card {
+  --skill-color: var(--border-color);
+
   position: relative;
   background: var(--card-bg);
   border: 1px solid var(--border-color);
@@ -64,7 +66,7 @@ const {t, tm} = useI18n();
   position: absolute;
   bottom: 100%;
   left: 50%;
-  transform: translateX(-50%) translateY(-10px);
+  transform: translateX(-30%) translateY(-10px);
   width: 250px;
   background: var(--header-bg);
   border: 1px solid var(--border-color);
@@ -82,7 +84,7 @@ const {t, tm} = useI18n();
 .skill-card:hover .skill-card__tooltip {
   opacity: 1;
   visibility: visible;
-  transform: translateX(-50%) translateY(-5px);
+  transform: translateX(-30%) translateY(-5px);
 }
 
 .skill-card__expertise {
@@ -101,7 +103,7 @@ const {t, tm} = useI18n();
 
 @media (max-width: 768px) {
   .skill-card__tooltip {
-    width: 200px;
+    width: 150px;
     left: 0;
     transform: translateX(0) translateY(-10px);
   }

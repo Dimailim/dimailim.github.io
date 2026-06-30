@@ -7,6 +7,7 @@ const useTheme = () => {
 	const toggleTheme = () => {
 		theme.value = theme.value === 'light' ? 'dark' : 'light';
 		document.documentElement.setAttribute('data-theme', theme.value);
+		localStorage.setItem('theme', theme.value);
 	};
 	const initTheme = () => {
 		const dataThemeValue = document.documentElement.getAttribute('data-theme');

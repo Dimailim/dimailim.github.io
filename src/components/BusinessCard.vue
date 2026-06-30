@@ -1,19 +1,18 @@
 <script setup>
 import {useI18n} from 'vue-i18n';
 
-const {t} = useI18n();
+const { t } = useI18n();
 </script>
 
 <template>
   <section class="business-card" id="top">
     <div class="business-card__content">
-      <div class="business-card__badge">{{t('Common_data.BusinessCard_direction')}}</div>
+      <span class="business-card__badge">{{t('Common_data.BusinessCard_direction')}}</span>
       <h1 class="business-card__name">{{ t('Common_data.Common_name') }}</h1>
       <p class="business-card__position">{{ t('Common_data.BusinessCard_position') }}</p>
       <p class="business-card__email"><span class="material-symbols-outlined business-card__email-logo" aria-label="Email">mail</span>
         {{t('Common_data.Common_links.email')}}
       </p>
-      <div class="business-card__decor"></div>
     </div>
   </section>
 </template>
@@ -26,6 +25,18 @@ const {t} = useI18n();
 .business-card__content {
   position: relative;
   max-width: 600px;
+}
+
+.business-card__content::before {
+  content: '';
+  position: absolute;
+  top: -20px;
+  left: -20px;
+  width: 60px;
+  height: 60px;
+  border-top: 4px solid var(--accent);
+  border-left: 4px solid var(--accent);
+  opacity: 0.3;
 }
 
 .business-card__badge {
@@ -68,17 +79,6 @@ const {t} = useI18n();
 
 .business-card__email-logo {
   font-size: 1.5rem;
-}
-
-.business-card__decor {
-  position: absolute;
-  top: -20px;
-  left: -20px;
-  width: 60px;
-  height: 60px;
-  border-top: 4px solid var(--accent);
-  border-left: 4px solid var(--accent);
-  opacity: 0.3;
 }
 
 @media (max-width: 768px) {

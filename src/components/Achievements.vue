@@ -1,14 +1,17 @@
 <script setup>
-import {ref} from 'vue';
+import {computed, ref} from 'vue';
 import {useI18n} from 'vue-i18n';
+import useMediaQuery from '../composables/useMediaQuery.js';
 
 import Carousel from './Carousel.vue';
 import AchievementModal from './AchievementModal.vue';
 
-const {t, tm} = useI18n();
+const { t, tm } = useI18n();
+const isMobile = useMediaQuery('(max-width: 768px)');
 
 const selectedItem = ref(null);
 const showScreenshots = ref(false);
+const elementsPerPage = computed(() => isMobile.value ? 1 : 2);
 
 const openModal = (item) => {
   selectedItem.value = item;
@@ -33,7 +36,7 @@ const toggleScreenshots = () => {
     <div class="achievements__content">
       <Carousel 
         :items="tm('Achievements_data.Achievements_list')"
-        :perPage="2"
+        :perPage="elementsPerPage"
         :prevLabel="t('Achievements_data.carousel_prev')"
         :nextLabel="t('Achievements_data.carousel_next')"
       >
@@ -42,9 +45,12 @@ const toggleScreenshots = () => {
             class="achievement-card"
             @click="openModal(item)"
             role="button"
+            tabindex="0"
+            @keydown.enter="openModal(item)"
+            @keydown.space.prevent="openModal(item)"
           >
-            <div class="achievement-card__tags">
-              <span v-for="tag in item.tags" :key="tag" class="achievement-card__tag">
+            <div class="tags">
+              <span v-for="tag in item.tags" :key="tag" class="tag">
                 {{ tag }}
               </span>
             </div>
@@ -89,22 +95,5 @@ const toggleScreenshots = () => {
   transform: translateY(-5px);
   border-color: var(--accent);
   box-shadow: var(--shadow);
-}
-
-.achievement-card__tags {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 0.5rem;
-  margin-bottom: 1rem;
-}
-
-.achievement-card__tag {
-  font-size: 0.75rem;
-  padding: 0.25rem 0.6rem;
-  background: var(--bg-color);
-  border: 1px solid var(--border-color);
-  border-radius: var(--tag-radius);
-  color: var(--text-secondary);
-  user-select: none;
 }
 </style>

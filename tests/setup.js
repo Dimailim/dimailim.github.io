@@ -51,5 +51,7 @@ beforeAll(() => {
 afterEach(() => {
 	document.documentElement.removeAttribute('data-theme');
 	vi.clearAllMocks();
+	vi.unstubAllGlobals()
 	global.IntersectionObserverCallback = null;
+	localStorage.clear();
 });

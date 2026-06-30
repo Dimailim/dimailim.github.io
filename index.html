@@ -3,17 +3,16 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <meta name="description" content="Dmitry Gvozdev | Frontend Developer - Portfolio site" />
-    <meta name="keywords" content="Frontend, Portfolio, Web Development, JavaScript, Vue, HTML, CSS, Vue.js, TypeScript, Software" />
+    <meta name="description" content="Frontend engineer with 7 years in JavaScript. I make complex logic and heavy computation look simple. Here's what I've built — and how." />
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined" rel="stylesheet" />
     <link rel="icon" type="image/svg+xml" href="./favicon.svg" />
     <link href="./src/style.css" rel="stylesheet">
-    <title>Dmitry Gvozdev | Frontend Developer</title>
+    <title>Dmitry Gvozdev | Software engineer</title>
     <script>
 		(function () {
 		    const clientHasDarkTheme = window.matchMedia('(prefers-color-scheme: dark)').matches;
-			const theme = clientHasDarkTheme ? 'dark' : 'light';
+			const theme = localStorage.getItem('theme') || (clientHasDarkTheme ? 'dark' : 'light');
 			document.documentElement.setAttribute('data-theme', theme);
         })();
     </script>

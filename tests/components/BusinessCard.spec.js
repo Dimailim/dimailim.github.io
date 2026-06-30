@@ -18,19 +18,14 @@ describe('BusinessCard component', () => {
 		expect(wrapper.find('.business-card').exists()).toBe(true);
 	});
 
-	it('should render text correctly. EN', () => {
-		const wrapper = businessCardMount();
+	it.each([
+		['en', en],
+		['ru', ru]
+	])('should render text correctly. (%s)', (locale, messages) => {
+		const wrapper = businessCardMount(locale);
 
-		expect(wrapper.find('.business-card__badge').text()).toBe(en.Common_data.BusinessCard_direction);
-		expect(wrapper.find('.business-card__name').text()).toBe(en.Common_data.Common_name);
-		expect(wrapper.find('.business-card__position').text()).toBe(en.Common_data.BusinessCard_position);
-	});
-
-	it('should render text correctly. RU', () => {
-		const wrapper = businessCardMount('ru');
-
-		expect(wrapper.find('.business-card__badge').text()).toBe(ru.Common_data.BusinessCard_direction);
-		expect(wrapper.find('.business-card__name').text()).toBe(ru.Common_data.Common_name);
-		expect(wrapper.find('.business-card__position').text()).toBe(ru.Common_data.BusinessCard_position);
+		expect(wrapper.find('.business-card__badge').text()).toBe(messages.Common_data.BusinessCard_direction);
+		expect(wrapper.find('.business-card__name').text()).toBe(messages.Common_data.Common_name);
+		expect(wrapper.find('.business-card__position').text()).toBe(messages.Common_data.BusinessCard_position);
 	});
 });
