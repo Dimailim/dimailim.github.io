@@ -63,12 +63,12 @@
       {
         "name": "Vue.js",
         "color": "#42b883",
-        "description": "Active learning, basic level.\nUsed in personal projects - this site is one of my learning projects in Vue."
+        "description": "Vue3 (Composition API).\nUsed in personal projects - this site is one of my personal projects in Vue."
       },
       {
         "name": "NodeJS",
         "color": "#339933",
-        "description": "Basic knowledge, learned by myself in pet projects.\nBuilt a small CLI utility that converts CSV into JS unit tests as an automation tool."
+        "description": "Learned by myself in pet projects.\nBuilt a small CLI utility that converts CSV into JS unit tests as an automation tool."
       },
       {
         "name": "HTML/CSS",
